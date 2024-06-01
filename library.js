@@ -8,6 +8,21 @@ class Book {
     this.isbn = isbn;
     this.availableCopies = availableCopies;
   }
+
+  //borrow book
+  borrowBook() {
+    if (this.availableCopies > 0) {
+      this.availableCopies--;
+      console.log("Book borrowed successfully!");
+    } else {
+      console.log("Book Unavailable");
+    }
+  }
+  //return book
+  returnBook() {
+    this.availableCopies++;
+    console.log("Book returned");
+  }
 }
 
 const book1 = new Book(
@@ -35,4 +50,43 @@ const book4 = new Book(
 
 const book5 = new Book("The Hobbit", "J R Tolkien", "978-0-2611-0253-7", 5);
 
-const library = [book1, book2, book3, book4, book5];
+//creating library class
+class Library {
+  constructor(name) {
+    this.name = name;
+    this.books = [];
+  }
+
+  //adding a book
+
+  addBook(book) {
+    this.books.push(book);
+    console.log('Book "${book.title} added');
+  }
+
+  removeBook(isbn) {
+    const index = this.books.findIndex((book) => book.isbn === isbn);
+    if (index !== -1) {
+      const removeBook = this.books.splice(index, 1)[0];
+      console.log('Book "${removedBook.title}" removed');
+    } else {
+      console.log("Book Not Found");
+    }
+  }
+
+  //Lookup Book by title
+
+  findBookByTitle(title) {
+    return this.books.find((book) => book.title === title);
+  }
+  //listing books
+
+  listAllBooks() {
+    console.log("Books in ${this.name} library:");
+    this.books.forEach((book) => {
+      console.log(
+        "${book.title} by ${book.author} - isbn: ${book.isbn} - Available Copies: ${book.availableCopies}"
+      );
+    });
+  }
+}
