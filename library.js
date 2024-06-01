@@ -13,42 +13,17 @@ class Book {
   borrowBook() {
     if (this.availableCopies > 0) {
       this.availableCopies--;
-      console.log("Book borrowed successfully!");
+      console.log(`Book ${book.title} borrowed successfully!`);
     } else {
-      console.log("Book Unavailable");
+      console.log(`Book ${book.title} Unavailable`);
     }
   }
   //return book
   returnBook() {
     this.availableCopies++;
-    console.log("Book returned");
+    console.log(`Book ${book.title} returned`);
   }
 }
-
-const book1 = new Book(
-  "To Kill A Mockingbird",
-  "Harper Lee",
-  "978-0-06-112008-4",
-  5
-);
-
-const book2 = new Book("1984", "George Orwell", "978-0-452-28423-4", 5);
-
-const book3 = new Book(
-  "The Great Gatsby",
-  "F Scott Fitzgerald",
-  "978-0-7432-7356-5",
-  5
-);
-
-const book4 = new Book(
-  "Harry Potter and the Philosopher's Stone",
-  "J K Rowling",
-  "9978-1-4088-5564-6",
-  5
-);
-
-const book5 = new Book("The Hobbit", "J R Tolkien", "978-0-2611-0253-7", 5);
 
 //creating library class
 class Library {
@@ -61,16 +36,16 @@ class Library {
 
   addBook(book) {
     this.books.push(book);
-    console.log('Book "${book.title} added');
+    console.log(`Book ${book.title} added`);
   }
 
   removeBook(isbn) {
     const index = this.books.findIndex((book) => book.isbn === isbn);
     if (index !== -1) {
       const removeBook = this.books.splice(index, 1)[0];
-      console.log('Book "${removedBook.title}" removed');
+      console.log(`Book "${removedBook.title}" removed`);
     } else {
-      console.log("Book Not Found");
+      console.log(`Book ${book.title} Not Found`);
     }
   }
 
@@ -82,11 +57,51 @@ class Library {
   //listing books
 
   listAllBooks() {
-    console.log("Books in ${this.name} library:");
+    console.log(`Books in ${this.name} library:`);
     this.books.forEach((book) => {
       console.log(
-        "${book.title} by ${book.author} - isbn: ${book.isbn} - Available Copies: ${book.availableCopies}"
+        `${book.title} by ${book.author} - isbn: ${book.isbn} - Available Copies: ${book.availableCopies}`
       );
     });
   }
 }
+
+const book1 = new Book(
+  "To Kill A Mockingbird",
+  "Harper Lee",
+  "978-0-06-112008-4",
+  1
+);
+
+const book2 = new Book("1984", "George Orwell", "978-0-452-28423-4", 1);
+
+const book3 = new Book(
+  "The Great Gatsby",
+  "F Scott Fitzgerald",
+  "978-0-7432-7356-5",
+  1
+);
+
+const book4 = new Book(
+  "Harry Potter and the Philosopher's Stone",
+  "J K Rowling",
+  "9978-1-4088-5564-6",
+  1
+);
+
+const book5 = new Book("The Hobbit", "J R Tolkien", "978-0-2611-0253-7", 1);
+//console.log("hello world");
+
+const library = new Library("Des");
+
+//adding books
+library.addBook(book1);
+library.addBook(book2);
+library.addBook(book3);
+library.addBook(book4);
+library.addBook(book5);
+
+//listing books
+library.listAllBooks();
+
+//borrow book
