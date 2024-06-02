@@ -13,15 +13,15 @@ class Book {
   borrowBook() {
     if (this.availableCopies > 0) {
       this.availableCopies--;
-      console.log(`Book ${book.title} borrowed successfully!`);
+      console.log(`Book ${Book.title} borrowed successfully!`);
     } else {
-      console.log(`Book ${book.title} Unavailable`);
+      console.log(`Book ${Book.title} Unavailable`);
     }
   }
   //return book
   returnBook() {
     this.availableCopies++;
-    console.log(`Book ${book.title} returned`);
+    console.log(`Book ${Book.title} returned`);
   }
 }
 
@@ -29,21 +29,21 @@ class Book {
 class Library {
   constructor(name) {
     this.name = name;
-    this.books = [];
+    this.book = [];
   }
 
   //adding a book
 
   addBook(book) {
-    this.books.push(book);
+    this.book.push(book);
     console.log(`Book ${book.title} added`);
   }
 
   removeBook(isbn) {
-    const index = this.books.findIndex((book) => book.isbn === isbn);
+    const index = this.book.findIndex((book) => book.isbn === isbn);
     if (index !== -1) {
-      const removeBook = this.books.splice(index, 1)[0];
-      console.log(`Book "${removedBook.title}" removed`);
+      const removeBook = this.book.splice(index, 1)[0];
+      console.log(`Book "${removeBook.title}" removed`);
     } else {
       console.log(`Book ${book.title} Not Found`);
     }
@@ -52,13 +52,13 @@ class Library {
   //Lookup Book by title
 
   findBookByTitle(title) {
-    return this.books.find((book) => book.title === title);
+    return this.book.find((book) => book.title === title);
   }
   //listing books
 
   listAllBooks() {
     console.log(`Books in ${this.name} library:`);
-    this.books.forEach((book) => {
+    this.book.forEach((book) => {
       console.log(
         `${book.title} by ${book.author} - isbn: ${book.isbn} - Available Copies: ${book.availableCopies}`
       );
@@ -101,7 +101,17 @@ library.addBook(book3);
 library.addBook(book4);
 library.addBook(book5);
 
-//listing books
-library.listAllBooks();
+//listing books>>
+//library.listAllBooks();
 
 //borrow book
+//book1.borrowBook();
+
+//finding a book
+//book2.findBookByTitle();
+
+//removing a book >>
+//library.removeBook("9978-1-4088-5564-6");
+
+// const foundBook = Library.findBookByTitle("The Great Gatsby");
+// console.log("Found Book:", foundBook);
